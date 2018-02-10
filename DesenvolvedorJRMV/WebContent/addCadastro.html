@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="cadastrosModulo">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- <link rel="icon" href="../../favicon.ico"> -->
+
+    <title>Desenvolvedor Jr MV</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+  
+    <script src="js/angular.min.js"></script>
+   <!--  
+    <script src="controller/cadastros.js"></script>
+
+	<script src="js/jquery.mask.js"></script>
+    <script src="js/jquery.mask.min.js"></script> -->
+
+  </head>
+
+  <body ng-controller="cadastrosController">
+    
+    <!-- Static navbar -->
+    <div ng-include src="'header.html'"></div>
+
+
+    <div class="container">
+      <h1>Cadastro de Pessoa</h1>
+    </div>
+
+    <hr />
+
+    <div class="container">
+      <div class="row">
+
+      <!-- FORM -->
+      <form class="form-horizontal">
+        <!-- Nome -->
+        <div class="form-group">
+          <label for="nome" class="col-md-1 control-label">Nome:</label>
+          <div class="col-md-4">
+            <input type="text" required="required" ng-model="cadastro.nome" class="form-control" id="nome" placeholder="Nome">
+          </div>
+
+          <!-- CPF -->
+            <div class="form-group">
+              <label for="cpf" class="col-md-1 control-label">CPF:</label>
+              <div class="col-md-4">
+                <input type="text" required="true" ng-model="cadastro.cpf" class="form-control" id="cpf" placeholder="CPF">
+              </div>
+            </div>
+
+        </div>
+
+        <!-- EMAIL -->
+        <div class="form-group">
+          <label for="email" class="col-md-1 control-label">Email:</label>
+          <div class="col-md-4">
+            <input type="email" ng-model="cadastro.email" class="form-control" id="email" placeholder="Email">
+          </div>
+
+          <!-- DATA 
+          <div class="form-group">
+            <label for="date" class="col-md-1 control-label">Data Nasc:</label>
+            <div class="col-md-4">
+             <input type="text" ng-model="cadastro.date" class="form-control" id="date">
+            </div>
+          </div> --> 
+
+        </div>
+
+        <hr />
+
+        <!-- DDD -->
+        <div class="form-group">
+          <label for="ddd" class="col-md-1 control-label">Telefone:</label>
+          <div class="col-md-1">
+            <input type="text" ng-model="telefone.ddd" class="form-control" id="ddd" placeholder="##">
+          </div>
+
+          <!-- FONE -->
+          <div class="form-group">
+          
+          <div class="col-md-2">
+            <input type="tel" ng-model="telefone.fone" class="form-control" id="fone" placeholder="#####-####">
+          </div>
+
+          <!-- BUTTON -->
+          <button type="button" class="btn btn-primary" ng-click="salvar()">Adicionar</button>
+
+        </div>
+
+        </div>
+
+      </form><!-- /FORM -->
+
+      <!-- TABLE -->
+      <table class="table table-bordered table-hover table-striped">
+        <th>ID</th>
+        <th>DDD</th>
+        <th>Telefone</th>
+        <th>Ações</th>
+        <tr ng-repeat="cadastrosTable in cadastros">
+          <td>{{cadastrosTable.id}}</td>
+          <td>{{cadastrosTable.ddd}}</td>
+          <td>{{cadastrosTable.fone}}</td>
+          <td><button type="button" class="btn btn-danger" ng-click="excluir()">Delete</button></td>
+        </tr>
+      </table>
+
+
+      <button ng-disabled="!cadastro.nome && !cadastro.cpf" type="submit" class="btn btn-success" ng-click="salvar()">Cadastrar</button>
+
+    </div>
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- 
+    
+    <script src="js/util.js"></script> -->
+    
+    <script src="controller/cadastros.js"></script>
+  </body>
+</html>

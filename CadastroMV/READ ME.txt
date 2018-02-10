@@ -1,0 +1,6 @@
+Aplicação utilizando Spring Boot / Hibernate / Bootstrap / Javascript e alguns plugins
+
+Orientações:
+	dentro de "application.properties" insira das do BD para teste.
+
+	- sistema incompleto.

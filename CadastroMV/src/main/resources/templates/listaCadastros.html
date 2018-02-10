@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header :: common-header" />
+
+  <body>
+
+    <!-- Static navbar -->
+    <div th:replace="common/header :: navbar"></div>
+
+
+    <div class="container">
+      <h1>Listagem de Pessoas</h1>
+    </div>
+
+    <hr />
+
+    <div class="container">
+      <div class="row">
+
+      <!-- FORM -->
+      <form class="form-horizontal">
+        
+       <!-- id escondido para execução do post/put/delete
+      	<input hidden="hidden" name="id" th:value="${pessoa.id}" /> -->
+        
+        <!-- NOME -->
+        <div class="form-group">
+          <label for="ddd" class="col-md-1 control-label">Nome:</label>
+          <div class="col-md-4">
+            <input type="pesquisa" ng-model="pesquisaCadastro" class="form-control" id="nomeP" placeholder="Pesquisa por nome" />
+          </div>
+
+          <!-- CPF -->
+          <div class="form-group">
+          <label for="ddd" class="col-md-1 control-label">CPF:</label>
+          <div class="col-md-2">
+            <input type="text" ng-model="pesquisaCadastroCpf" class="form-control" id="pesquisa" placeholder="Pesquisa por CPF" />
+          </div>
+
+          <!-- BUTTON -->
+          <button type="button" class="btn btn-primary">Pesquisar</button>
+          <button type="button" class="btn btn-success">Cadastrar</button>
+
+        </div>
+
+        </div>
+
+      </form><!-- /FORM -->
+
+      <!-- TABLE -->
+      <table class="table table-bordered table-hover table-striped">
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>CPF</th>
+        <th>Idade</th>
+        <th>Qtd Fones</th>
+        <th>Operation</th>
+        <tr data-th-each="pessoa : ${listaCadastro}">
+          <td th:text="${pessoa.id}"></td>
+          <td th:text="${pessoa.nome}"></td>
+          <td th:text="${pessoa.email}"></td>
+          <td th:text="${pessoa.cpf}"></td>
+          <td th:text="${pessoa.date}"></td>
+          <td>{{cadastrosTable.qtdFones}}</td>
+          <td>
+          	<input hidden="hidden" name="id" th:value="${pessoa.id}" />
+          	<a th:href="@{/pessoa/editarCadastro(id=${pessoa.id})}" >Editar</a> | 
+          	<button th:id="'onePessoa-'+${pessoa.id}" type="submit" class="btn btn-danger btn-xs delete-pessoa" value="delete">
+          	<span class="fa fa-times"></span>Delete</button></td>
+        </tr>
+      </table>
+
+    </div>
+    </div> <!-- /container -->
+
+
+    <!-- FOOTER -->
+    <div th:replace="common/header :: body-bottom-scripts"></div>
+    
+  </body>
+</html>

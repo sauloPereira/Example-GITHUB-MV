@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.w3.org/1000/xhtml">
+<head th:replace="common/header :: common-header" />
+
+  <body>
+
+    <!-- Static navbar -->
+    <div th:replace="common/header :: navbar"></div>
+
+
+    <div class="container">
+      <h1>Cadastro de Pessoa</h1>
+    </div>
+
+    <hr />
+
+    <div class="container">
+      <div class="row">
+
+      <!-- FORM -->
+      <form class="form-horizontal" th:action="@{/pessoa/addCadastro}" method="post" enctype="multipart/form-data">
+      
+      	<!-- id escondido para execução do post/put/delete -->
+      	<input hidden="hidden" name="id" th:value="${pessoa.id}" ></input>
+      	
+        <!-- Nome -->
+        <div class="form-group">
+          <label for="nome" class="col-md-1 control-label">Nome:</label>
+          <div class="col-md-4">
+            <input type="text" name="nome" required="required" th:value="${pessoa.nome}" class="form-control" id="nome" placeholder="Nome" />
+          </div>
+
+          <!-- CPF -->
+            <div class="form-group">
+              <label for="cpf" class="col-md-1 control-label">CPF:</label>
+              <div class="col-md-4">
+                <input type="text" name="cpf" required="required" th:value="${pessoa.cpf}" class="form-control" id="cpf" placeholder="CPF" />
+              </div>
+            </div>
+
+        </div>
+
+        <!-- EMAIL -->
+        <div class="form-group">
+          <label for="email" class="col-md-1 control-label">Email:</label>
+          <div class="col-md-4">
+            <input type="email" name="email" th:value="${pessoa.email}" class="form-control" id="email" placeholder="Email" />
+          </div>
+
+          <!-- DATA  -->
+          <div class="form-group">
+            <label for="date" class="col-md-1 control-label">Data Nasc:</label>
+            <div class="col-md-4">
+             <input type="text" name="date" th:value="${pessoa.date}" class="form-control" id="date" />
+            </div>
+          </div> 
+
+        </div>
+
+        <hr />
+
+        <!-- DDD -->
+        <div class="form-group">
+          <label for="ddd" class="col-md-1 control-label">Telefone:</label>
+          <div class="col-md-1">
+            <input type="text" name="ddd" value="telefone.ddd" class="form-control" id="ddd" placeholder="##" />
+          </div>
+
+          <!-- FONE -->
+          <div class="form-group">
+          
+          <div class="col-md-2">
+            <input type="tel" value="telefone.numero" name="numero" class="form-control" id="numero" placeholder="#####-####" />
+          </div>
+
+          <!-- BUTTON -->
+          <button type="button" class="btn btn-primary">Adicionar</button>
+
+        </div>
+
+        </div>
+        
+        <!-- TABLE -->
+      <table class="table table-bordered table-hover table-striped">
+        <th>ID</th>
+        <th>DDD</th>
+        <th>Telefone</th>
+        <th>Operation</th>
+        <tr data-th-each="pessoa : ${listaCadastro}">
+          <td th:text="${pessoa.id}"></td>
+          <td></td>
+          <td></td>
+          <td><button type="button" class="btn btn-danger" ng-click="excluir()">Delete</button></td>
+        </tr>
+      </table>
+
+
+      <button type="submit" class="btn btn-success">Cadastrar</button>
+        
+
+      </form><!-- /FORM -->
+
+      
+
+    </div>
+    </div> <!-- /container -->
+
+
+   <!-- FOOTER -->
+    <div th:replace="common/header :: body-bottom-scripts"></div>
+    
+  </body>
+</html>

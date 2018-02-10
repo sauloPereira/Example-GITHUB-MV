@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="cadastrosModulo">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <!-- <link rel="icon" href="../../favicon.ico"> -->
+
+    <title>Desenvolvedor Jr MV</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+  
+    <script src="js/angular.min.js"></script>
+
+  </head>
+
+  <body ng-controller="cadastrosController">
+    
+    <!-- Static navbar -->
+    <div ng-include src="'header.html'"></div>
+
+
+    <div class="container">
+      <h1>Listagem de Pessoas</h1>
+    </div>
+
+    <hr />
+
+    <div class="container">
+      <div class="row">
+
+      <!-- FORM -->
+      <form class="form-horizontal">
+        
+        <!-- NOME -->
+        <div class="form-group">
+          <label for="ddd" class="col-md-1 control-label">Nome:</label>
+          <div class="col-md-4">
+            <input type="pesquisa" ng-model="pesquisaCadastro" class="form-control" id="nomeP" placeholder="Pesquisa por nome">
+          </div>
+
+          <!-- CPF -->
+          <div class="form-group">
+          <label for="ddd" class="col-md-1 control-label">CPF:</label>
+          <div class="col-md-2">
+            <input type="text" ng-model="pesquisaCadastroCpf" class="form-control" id="pesquisa" placeholder="Pesquisa por CPF">
+          </div>
+
+          <!-- BUTTON -->
+          <button type="button" class="btn btn-primary">Pesquisar</button>
+          <button type="button" class="btn btn-success">Cadastrar</button>
+
+        </div>
+
+        </div>
+
+      </form><!-- /FORM -->
+
+      <!-- TABLE -->
+      <table class="table table-bordered table-hover table-striped">
+        <th>ID</th>
+        <th>Nome</th>
+        <th>Email</th>
+        <th>CPF</th>
+        <th>Idade</th>
+        <th>Qtd Fones</th>
+        <th>Ações</th>
+        <tr ng-repeat="cadastrosTable in cadastros | filter:pesquisaCadastro | filter:pesquisaCadastroCpf">
+          <td>{{cadastrosTable.id}}</td>
+          <td>{{cadastrosTable.nome}}</td>
+          <td>{{cadastrosTable.email}}</td>
+          <td>{{cadastrosTable.cpf}}</td>
+          <td>{{cadastrosTable.date}}</td>
+          <td>{{cadastrosTable.qtdFones}}</td>
+          <td><a href="editarCadastro.html" >Editar</a> | <button type="button" class="btn btn-danger" ng-click="excluir()">Delete</button></td>
+        </tr>
+      </table>
+
+    </div>
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="controller/cadastros.js"></script>
+  </body>
+</html>
